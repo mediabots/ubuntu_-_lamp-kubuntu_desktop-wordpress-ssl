@@ -35,7 +35,7 @@ So it is a good practice to change those password after processing the script.
 
 Just go to http://SITE_IP_OR_URL/phpmyadmin and login with default/chosen passwords.
 
-__MySQL user id is root
+_MySQL user id is root
 
 __PhpMyAdmin user id phpmyadmin
 
