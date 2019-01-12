@@ -3,8 +3,9 @@ Shell Script for Auto installation of LAMP(Apache,MySQL,Php),PhpMyAdmin,Kubuntu 
 
 This is a Shell Script(Bash) with & without UI(user interface) to automatically install all above Ubuntu packages for 18.04/Bionic version
 
-# Optional
+## Optional
 One can change PhpMyAdmin & MySQL password of his/her own choice.
+
 Default MySQL password is : mysql_PASSWORD
 And
 Default PhpMyAdmin password is : phpmyadmin_PASSWORD
