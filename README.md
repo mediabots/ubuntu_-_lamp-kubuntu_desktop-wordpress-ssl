@@ -6,6 +6,8 @@ This is a Shell Script(Bash) with & without UI(user interface) to automatically 
 If you are using a older verion of Ubuntu like 16.04 or 14.04
 Then Remote Desktop(XRDP) facility would not work for you.
 
+---
+
 ## Optional
 One can change Default PhpMyAdmin & MySQL password to his/her own choice.
 
@@ -21,12 +23,16 @@ COMMAND TO CHNAGE DEFAULT PASSWORDS:
 
 Run them before running the Script.
 
+___
+
 ## How to Run the Script
 `wget https://raw.githubusercontent.com/mediabots/ubuntu_-_lamp-kubuntu_desktop-wordpress-ssl/92c6e8cd399ac48c0cc486103e7880cbcaaae3ed/mediabots_ui.sh`
 
 `chmod +x mediabots_ui.sh`
 
 `./mediabots_ui.sh`
+
+***
 
 ## Security
 Since this script would pass your MySQL & PhpMyAdmin password throough command lines
@@ -37,7 +43,7 @@ Just go to http://SITE_IP_OR_URL/phpmyadmin and login with default/chosen passwo
 
 >MySQL user id is root
 
->PhpMyAdmin user id phpmyadmin
+>PhpMyAdmin user id is phpmyadmin
 
 After logged into phpmyadin, click on "user accounts". Then click on "Edit privileges" link from Action column corresponding to User name root & phpmyadmin (one by one). After that click on Change password, put a secure password. Finally click on 'Go' button.
 
