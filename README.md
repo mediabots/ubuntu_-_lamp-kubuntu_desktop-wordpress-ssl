@@ -15,7 +15,7 @@ Default PhpMyAdmin password is : phpmyadmin_PASSWORD
 
 COMMAND TO CHNAGE DEFAULT PASSWORDS:
 
-sudo sed -i 's/phpmyadmin_PASSWORD/NewPassword/g' mediabots_ui.sh
+`sudo sed -i 's/phpmyadmin_PASSWORD/NewPassword/g' mediabots_ui.sh`
 
 sudo sed -i 's/mysql_PASSWORD/NewPassword/g' mediabots_ui.sh
 
@@ -35,9 +35,9 @@ So it is a good practice to change those password after processing the script.
 
 Just go to http://SITE_IP_OR_URL/phpmyadmin and login with default/chosen passwords.
 
-_MySQL user id is root
+MySQL user id is root
 
-__PhpMyAdmin user id phpmyadmin
+PhpMyAdmin user id phpmyadmin
 
 After logged into phpmyadin, click on "user accounts". Then click on "Edit privileges" link from Action column corresponding to User name root & phpmyadmin (one by one). After that click on Change password, put a secure password. Finally click on 'Go' button.
 
