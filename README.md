@@ -28,6 +28,25 @@ chmod +x mediabots_ui.sh
 
 ./mediabots_ui.sh
 
+## Security
+Since this script would pass your MySQL & PhpMyAdmin password throough command lines
+
+So it is a good practice to change those password after processing the script.
+
+Just go to http://SITE_IP_OR_URL/phpmyadmin and login with default/choosen passwords.
+
+MySQL user id is root
+
+PhpMyAdmin user id phpmyadmin
+
+After logged in to phpmyadin, click on "user accounts". Then click on "Edit privileges" link corresponding to user name root & phpmyadmin. After that click on Change password, put a secure password. Finally click on 'Go' button.
+
+All set :)
+
+
+
+
+
 
 
 
