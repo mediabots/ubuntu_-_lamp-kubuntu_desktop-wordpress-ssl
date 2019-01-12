@@ -15,3 +15,16 @@ COMMAND TO CHNAGE DEFAULT PASSWORDS:
 sudo sed -i 's/phpmyadmin_PASSWORD/NewPassword/g' mediabots_ui.sh
 
 sudo sed -i 's/mysql_PASSWORD/NewPassword/g' mediabots_ui.sh
+
+USE them before runninf the Script.
+
+## How to Run the Script
+wget https://raw.githubusercontent.com/mediabots/ubuntu_-_lamp-kubuntu_desktop-wordpress-ssl/92c6e8cd399ac48c0cc486103e7880cbcaaae3ed/mediabots_ui.sh
+
+chmod +x mediabots_ui.sh
+
+./mediabots_ui.sh
+
+
+
+
