@@ -1,6 +1,5 @@
 [HOME PAGE](http://mediabots.net)
-Inline-style: 
-![image](https://avatars1.githubusercontent.com/u/46617144?s=460&v=4 "Logo")
+![image](https://avatars1.githubusercontent.com/u/46617144?s=200 "Logo")
 
 
 # ubuntu_-_lamp-kubuntu_desktop-wordpress-ssl
