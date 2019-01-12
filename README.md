@@ -8,6 +8,9 @@ One can change PhpMyAdmin & MySQL password of his/her own choice.
 Default MySQL password is : mysql_PASSWORD
 And
 Default PhpMyAdmin password is : phpmyadmin_PASSWORD
+
 COMMAND TO CHNAGE DEFAULT PASSWORDS:
+
 sudo sed -i 's/phpmyadmin_PASSWORD/NewPassword/g' mediabots_ui.sh
+
 sudo sed -i 's/mysql_PASSWORD/NewPassword/g' mediabots_ui.sh
