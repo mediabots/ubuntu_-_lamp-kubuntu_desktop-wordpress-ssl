@@ -17,16 +17,16 @@ COMMAND TO CHNAGE DEFAULT PASSWORDS:
 
 `sudo sed -i 's/phpmyadmin_PASSWORD/NewPassword/g' mediabots_ui.sh`
 
-sudo sed -i 's/mysql_PASSWORD/NewPassword/g' mediabots_ui.sh
+`sudo sed -i 's/mysql_PASSWORD/NewPassword/g' mediabots_ui.sh`
 
 Run them before running the Script.
 
 ## How to Run the Script
-wget https://raw.githubusercontent.com/mediabots/ubuntu_-_lamp-kubuntu_desktop-wordpress-ssl/92c6e8cd399ac48c0cc486103e7880cbcaaae3ed/mediabots_ui.sh
+`wget https://raw.githubusercontent.com/mediabots/ubuntu_-_lamp-kubuntu_desktop-wordpress-ssl/92c6e8cd399ac48c0cc486103e7880cbcaaae3ed/mediabots_ui.sh`
 
-chmod +x mediabots_ui.sh
+`chmod +x mediabots_ui.sh`
 
-./mediabots_ui.sh
+`./mediabots_ui.sh`
 
 ## Security
 Since this script would pass your MySQL & PhpMyAdmin password throough command lines
@@ -35,9 +35,9 @@ So it is a good practice to change those password after processing the script.
 
 Just go to http://SITE_IP_OR_URL/phpmyadmin and login with default/chosen passwords.
 
-MySQL user id is root
+>MySQL user id is root
 
-PhpMyAdmin user id phpmyadmin
+>PhpMyAdmin user id phpmyadmin
 
 After logged into phpmyadin, click on "user accounts". Then click on "Edit privileges" link from Action column corresponding to User name root & phpmyadmin (one by one). After that click on Change password, put a secure password. Finally click on 'Go' button.
 
