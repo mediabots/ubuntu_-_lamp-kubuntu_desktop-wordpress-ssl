@@ -136,8 +136,7 @@ if [ $wordpress_installation_ -eq 1 ] ; then
 	sudo chown -R www-data:www-data /var/www/html/$domain/wp-content/uploads
 	sudo service apache2 restart
 	sudo find /var/www/html/$domain -type d -exec chmod 750 {} \;
-	sudo find /var/www/html/$domain -type f -exec chmod 640 {} \;
-	
+	sudo find /var/www/html/$domain -type f -exec chmod 640 {} \;	
 fi
 sleep 10
 #
