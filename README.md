@@ -33,13 +33,13 @@ Since this script would pass your MySQL & PhpMyAdmin password throough command l
 
 So it is a good practice to change those password after processing the script.
 
-Just go to http://SITE_IP_OR_URL/phpmyadmin and login with default/choosen passwords.
+Just go to http://SITE_IP_OR_URL/phpmyadmin and login with default/chosen passwords.
 
-MySQL user id is root
+<font color=blue>MySQL user id is **root
 
-PhpMyAdmin user id phpmyadmin
+PhpMyAdmin user id **phpmyadmin</font>
 
-After logged in to phpmyadin, click on "user accounts". Then click on "Edit privileges" link corresponding to user name root & phpmyadmin. After that click on Change password, put a secure password. Finally click on 'Go' button.
+After logged into phpmyadin, click on "user accounts". Then click on "Edit privileges" link from Action column corresponding to User name root & phpmyadmin (one by one). After that click on Change password, put a secure password. Finally click on 'Go' button.
 
 All set :)
 
