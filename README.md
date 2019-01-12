@@ -10,7 +10,9 @@ Then Remote Desktop(XRDP) facility would not work for you.
 
 ## Requirements
 A SSH client such as putty
+
 A VPS or Dedicated server with ubuntu 18.04(preferred) Installed
+
 Either should have acces of root user OR run su(super user) 
 
 ---
@@ -33,6 +35,7 @@ Run them before running the Script.
 ___
 
 ## How to Run the Script
+
 `su`
 
 `wget https://raw.githubusercontent.com/mediabots/ubuntu_-_lamp-kubuntu_desktop-wordpress-ssl/92c6e8cd399ac48c0cc486103e7880cbcaaae3ed/mediabots_ui.sh`
