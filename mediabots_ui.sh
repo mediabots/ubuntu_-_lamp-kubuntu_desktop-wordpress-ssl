@@ -50,7 +50,7 @@ sudo apt-get --yes purge dolphin
 sudo apt-get --yes purge kate
 sudo apt-get --yes install gedit
 sudo xdg-mime default gedit.desktop text/plain
-sudo rm -f Desktop/trash.desktop
+sudo rm -f /root/Desktop/trash.desktop
 sudo apt-get --yes purge gwenview
 sudo apt-get autoclean
 sudo apt-get autoremove
