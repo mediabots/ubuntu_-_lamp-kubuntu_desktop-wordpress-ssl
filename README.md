@@ -3,6 +3,9 @@ Shell Script for Auto installation of LAMP(Apache,MySQL,Php),PhpMyAdmin,Kubuntu 
 
 This is a Shell Script(Bash) with & without UI(user interface) to automatically install all above Ubuntu packages for 18.04/Bionic version
 
+If you are using a older verion of Ubuntu like 16.04 or 14.04
+Then Remote Desktop(XRDP) facility would not work for you.
+
 ## Optional
 One can change Default PhpMyAdmin & MySQL password to his/her own choice.
 
@@ -16,7 +19,7 @@ sudo sed -i 's/phpmyadmin_PASSWORD/NewPassword/g' mediabots_ui.sh
 
 sudo sed -i 's/mysql_PASSWORD/NewPassword/g' mediabots_ui.sh
 
-USE them before runninf the Script.
+Run them before running the Script.
 
 ## How to Run the Script
 wget https://raw.githubusercontent.com/mediabots/ubuntu_-_lamp-kubuntu_desktop-wordpress-ssl/92c6e8cd399ac48c0cc486103e7880cbcaaae3ed/mediabots_ui.sh
