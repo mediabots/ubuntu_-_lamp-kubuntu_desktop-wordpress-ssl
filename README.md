@@ -1,7 +1,3 @@
-[HOME PAGE](http://mediabots.net)
-![image](https://avatars1.githubusercontent.com/u/46617144?s=240 "Logo")
-
-
 # ubuntu_-_lamp-kubuntu_desktop-wordpress-ssl
 Shell Script for Auto installation of LAMP(Apache,MySQL,Php),PhpMyAdmin,Kubuntu Remote Desktop,Wordpress,SSL
 
