@@ -71,7 +71,7 @@ sudo apt-get update
 sudo apt-get --yes install apache2
 sudo apt-get --yes install ufw # Firewall
 printf "y\n" | sudo ufw enable
-##sudo ufw allow 3389 # allowing remote desktop(xrdp) to Firewall
+sudo ufw allow 3389 # allowing remote desktop(xrdp) to Firewall
 sudo ufw allow ssh
 sudo ufw allow in "Apache Full"
 sudo apt-get --yes install mysql-server
