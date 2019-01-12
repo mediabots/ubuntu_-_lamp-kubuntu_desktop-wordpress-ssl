@@ -5,11 +5,14 @@ This is a Shell Script(Bash) with & without UI(user interface) to automatically 
 
 If you are using a older verion of Ubuntu like 16.04 or 14.04
 Then Remote Desktop(XRDP) facility would not work for you.
+
 ---
+
 ## Requirements
 A SSH client such as putty
-A VPS or Dedicated server with ubuntu(18.04) Installed
+A VPS or Dedicated server with ubuntu 18.04(preferred) Installed
 Either should have acces of root user OR run su(super user) 
+
 ---
 
 ## Optional
