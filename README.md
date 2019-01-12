@@ -1,3 +1,8 @@
+[HOME PAGE](http://mediabots.net)
+Inline-style: 
+![image](https://avatars1.githubusercontent.com/u/46617144?s=460&v=4 "Logo")
+
+
 # ubuntu_-_lamp-kubuntu_desktop-wordpress-ssl
 Shell Script for Auto installation of LAMP(Apache,MySQL,Php),PhpMyAdmin,Kubuntu Remote Desktop,Wordpress,SSL
 
@@ -48,11 +53,3 @@ Just go to http://SITE_IP_OR_URL/phpmyadmin and login with default/chosen passwo
 After logged into phpmyadin, click on "user accounts". Then click on "Edit privileges" link from Action column corresponding to User name root & phpmyadmin (one by one). After that click on Change password, put a secure password. Finally click on 'Go' button.
 
 All set :)
-
-
-
-
-[HOME PAGE](http://mediabots.net)
-
-
-
