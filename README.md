@@ -13,7 +13,7 @@ A SSH client such as putty
 
 A VPS or Dedicated server with Ubuntu 18.04(preferred) OS Installed
 
-Either should have acces of root user OR run with su(super user) 
+Either should have access of root user OR run with su(super user) 
 
 ---
 
@@ -44,14 +44,14 @@ ___
 
 `./mediabots_ui.sh`
 
-If you opt for Kubuntu-Desktop installtion, then it would take around 1 hr 15 mins to complete all process.
+If you opt for Kubuntu-Desktop installation, then it would take around 1 hr 15 mins to complete all process.
 
 Otherwise, it would take around 10 minutes only.
 
 ***
 
 ## Security
-Since this script would pass your MySQL & PhpMyAdmin password throough command lines
+Since this script would pass your MySQL & PhpMyAdmin password through command lines
 
 So it is a good practice to change those password after processing the script.
 
