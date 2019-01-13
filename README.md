@@ -1,9 +1,9 @@
 # ubuntu_-_lamp-kubuntu_desktop-wordpress-ssl
 Shell Script for Auto installation of LAMP(Apache,MySQL,Php),PhpMyAdmin,Kubuntu Remote Desktop,Wordpress,SSL
 
-This is a Shell Script(Bash) with & without UI(user interface) to automatically install all above Ubuntu packages for 18.04/Bionic version
+This is a Shell Script(Bash) with & without UI(user interface) to automatically install all above packages for Ubuntu 18.04/Bionic OS.
 
-If you are using an older version of Ubuntu like 16.04 or 14.04
+If you are using an older version of Ubuntu like 14.04 or 16.04
 Then Remote Desktop(XRDP) facility would not work for you.
 
 ---
@@ -44,6 +44,10 @@ ___
 
 `./mediabots_ui.sh`
 
+If you opt for Kubuntu-Desktop installtion, then it would take around 1 hr 15 mins to complete all process.
+
+Otherwise, it would take around 10 minutes only.
+
 ***
 
 ## Security
@@ -60,3 +64,6 @@ Just go to http://SITE_IP_OR_URL/phpmyadmin and login with default/chosen passwo
 After logged into phpmyadin, click on "user accounts". Then click on "Edit privileges" link from Action column corresponding to User name root & phpmyadmin (one by one). After that click on Change password, put a secure password. Finally click on 'Go' button.
 
 All set :)
+
+## Demo Video
+coming soon
