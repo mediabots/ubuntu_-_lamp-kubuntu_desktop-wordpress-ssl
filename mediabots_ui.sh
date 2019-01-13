@@ -22,7 +22,8 @@ if [ -z $domain ] && [ $wordpress_installation_ -eq 0 ] ; then domain='mysite' ;
 if [ -z $wpdb_name ] ; then wpdb_name='wordpress_DATABASE' ; fi
 if [ -z $wpdb_user ] ; then wpdb_user='wordpress_USER' ; fi
 if [ -z $wpdb_password ] ; then wpdb_password='wordpress_PASSWORD' ; fi
-read -p "Do you want to install Remote Desktop(XRDP)? (Yes/No) : " xrdp_installtion
+echo "[3] Do you want to install Remote Desktop(XRDP)?"
+read -p " > It would take at least 1 hour to install. (Yes/No) : " xrdp_installtion
 xrdp_installtion=$(echo $xrdp_installtion | head -c 1)
 #
 # installing sudo
