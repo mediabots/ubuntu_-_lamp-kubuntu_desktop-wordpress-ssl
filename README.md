@@ -11,9 +11,9 @@ Then Remote Desktop(XRDP) facility would not work for you.
 ## Requirements
 A SSH client such as putty
 
-A VPS or Dedicated server with ubuntu 18.04(preferred) Installed
+A VPS or Dedicated server with Ubuntu 18.04(preferred) OS Installed
 
-Either should have acces of root user OR run su(super user) 
+Either should have acces of root user OR run with su(super user) 
 
 ---
 
