@@ -9,7 +9,7 @@ Then Remote Desktop(XRDP) facility would not work for you.
 Script will aslo install WINE to run Windows apps on your Linux system.
 
 SSL is verified by letsencrypt.org and initially it would provide a 3 month Cerificate.
-Cerificate would be auto renewed after every 60 days by CertBOT app,which would be also installed in your system :)
+Cerificate would be auto renewed after every 60 days by CertBOT app,which also would be installed in your system :)
 
 ---
 
