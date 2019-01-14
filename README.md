@@ -3,7 +3,7 @@ Shell Script for Auto installation of LAMP(Apache,MySQL,Php),PhpMyAdmin,Kubuntu 
 
 This is a Shell Script(Bash) with & without UI(user interface) to automatically install all above packages for Ubuntu 18.04/Bionic OS.
 
-If you are using an older version of Ubuntu like 14.04 or 16.04
+If you are using an older version of Ubuntu like 16.04 or 14.04.
 Then Remote Desktop(XRDP) facility would not work for you.
 
 ---
