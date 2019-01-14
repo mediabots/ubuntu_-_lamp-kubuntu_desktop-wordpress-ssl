@@ -6,6 +6,11 @@ This is a Shell Script(Bash) with & without UI(user interface) to automatically 
 If you are using an older version of Ubuntu like 16.04 or 14.04.
 Then Remote Desktop(XRDP) facility would not work for you.
 
+Script will aslo install WINE to run Windows apps on your Linux system.
+
+SSL is verified by letsencrypt.org and initially it would provide a 3 month Cerificate.
+Cerificate would be auto renewed after every 60 days by CertBOT app,which would be also installed in your system :)
+
 ---
 
 ## Requirements
