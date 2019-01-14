@@ -18,7 +18,7 @@ Either should have access of root user OR run with su(super user)
 ---
 
 ## Optional
-One can change Default PhpMyAdmin & MySQL password to his/her own choice.
+After Downloading "mediabots_ui.sh" file via wget, one can change Default PhpMyAdmin & MySQL password to his/her own choice.
 
 Default MySQL password is : mysql_PASSWORD
 And
@@ -35,6 +35,8 @@ Run them before running the Script.
 ___
 
 ## How to Run the Script
+
+Just run below 4 commands one after another :
 
 `su`
 
@@ -61,7 +63,7 @@ Just go to http://SITE_IP_OR_URL/phpmyadmin and login with default/chosen passwo
 
 >PhpMyAdmin user id is phpmyadmin
 
-After logged into phpmyadin, click on "user accounts". Then click on "Edit privileges" link from Action column corresponding to User name root & phpmyadmin (one by one). After that click on Change password, put a secure password. Finally click on 'Go' button.
+After logged into phpmyadin, click on "user accounts". Then click on "Edit privileges" link from Action column corresponding to User name root & phpmyadmin (one by one). After that click on "Change password", put a secure password. Finally click on 'Go' button.
 
 All set :)
 
