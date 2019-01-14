@@ -76,7 +76,7 @@ printf "y\n" | sudo ufw enable
 sudo ufw allow 3389 # allowing remote desktop(xrdp) to Firewall
 sudo ufw allow ssh
 sudo ufw allow in "Apache Full"
-sudo apt-get --yes install mysql-server
+sudo DEBIAN_FRONTEND=noninteractive apt-get --yes install mysql-server
 sudo mysql -e "DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1')"
 sudo mysql -e "FLUSH PRIVILEGES"
 sudo DEBIAN_FRONTEND=noninteractive apt-get --yes install php libapache2-mod-php php-mysql
