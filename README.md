@@ -1,15 +1,13 @@
 # ubuntu_-_lamp-kubuntu_desktop-wordpress-ssl
-Shell Script for Auto installation of LAMP(Apache,MySQL,Php),PhpMyAdmin,Kubuntu Desktop,Wordpress,SSL
+Shell Script for Auto installation of LAMP(Apache,MySQL,Php),PhpMyAdmin,Kubuntu Desktop,Wine,Wordpress,SSL Certificate
 
-This is a Shell Script(Bash) with & without UI(user interface) to automatically install all above packages for Ubuntu 18.04/Bionic OS.
+This is a Shell Script(Bash) with & without UI(user interface) to automatically install all above packages for Ubuntu 18.04/Bionic O.S.
 
-If you are using an older version of Ubuntu like 16.04 or 14.04.
-Then Remote Desktop(XRDP) facility would not work for you.
+If you are using an older version of Ubuntu like 16.04 or 14.04. Then Remote Desktop(XRDP) facility would not work for you.
 
-Script will aslo install WINE to run Windows apps on your Linux system.
+Script will also install WINE package to run Windows apps on your Linux system.
 
-SSL is verified by letsencrypt.org and initially it would provide a 3 month Cerificate.
-Cerificate would be auto renewed after every 60 days by CertBOT app,which also would be installed in your system :)
+SSL is verified by letsencrypt.org and initially it would provide a 3 month Certificate. Certificate would be auto renewed after every 60 days by "CertBOT" app,which also would be installed in your system :)
 
 ---
 
