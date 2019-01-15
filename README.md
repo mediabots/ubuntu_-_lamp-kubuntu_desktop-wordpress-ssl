@@ -1,5 +1,5 @@
 # ubuntu_-_lamp-kubuntu_desktop-wordpress-ssl
-Shell Script for Auto installation of LAMP(Apache,MySQL,Php),PhpMyAdmin,Kubuntu Remote Desktop,Wordpress,SSL
+Shell Script for Auto installation of LAMP(Apache,MySQL,Php),PhpMyAdmin,Kubuntu Desktop,Wordpress,SSL
 
 This is a Shell Script(Bash) with & without UI(user interface) to automatically install all above packages for Ubuntu 18.04/Bionic OS.
 
@@ -25,9 +25,9 @@ Either should have access of root user OR run with su(super user)
 ## Optional
 After Downloading "mediabots_ui.sh" file via wget, one can change Default PhpMyAdmin & MySQL password to his/her own choice.
 
-Default MySQL password is : mysql_PASSWORD
+Default MySQL user 'root' password is : mysql_PASSWORD
 And
-Default PhpMyAdmin password is : phpmyadmin_PASSWORD
+Default 'phpmyadmin' password is : phpmyadmin_PASSWORD
 
 COMMAND TO CHNAGE DEFAULT PASSWORDS:
 
@@ -51,9 +51,9 @@ Just run below 4 commands one after another :
 
 `./mediabots_ui.sh`
 
-If you opt for Kubuntu-Desktop installation, then it would take around 1 hr 15 mins to complete all process.
+If you opt for Kubuntu-Desktop installation, then it would take around 1 hr 15 mins to complete all the process.
 
-Otherwise, it would take around 10 minutes only.
+Otherwise, it would take more or less 10 minutes.
 
 ***
 
