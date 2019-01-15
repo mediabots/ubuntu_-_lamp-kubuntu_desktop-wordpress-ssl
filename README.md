@@ -74,3 +74,18 @@ All set :)
 
 ## Demo Video
 coming soon
+
+## Conclusion
+
+Script would take care of all common isssues of Wordpress installation, such as : Directory & User Permission , Redirection/Rewrite rules, .htaccess ,etc.
+
+Script would create an individual directory for each domain name such as : /var/www/html/YourDomainName
+And it would also create an individual host file for each domain name such as : /etc/apache2/sites-available/YourDomainName.conf
+That offers you to add the unlimited number of websites in your Server.
+
+SSL for your domain name woould be automatically renewed by the CertBOT. So you don't have to worry about that thing too.
+
+## Refrence
+
+askubuntu.com, stackexchange.com, stackoverflow.com, ubuntuforums.com, Lynda.com, Digitalocean.com,
+eff.org, tecmint.com
