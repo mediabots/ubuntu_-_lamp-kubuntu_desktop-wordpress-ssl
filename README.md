@@ -71,11 +71,9 @@ After logged into phpmyadin, click on "user accounts". Then click on "Edit privi
 All set :)
 
 ## Demo Video
-coming soon
+
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=LsI1Luq6X4Q" target="_blank"><img src="http://img.youtube.com/vi/LsI1Luq6X4Q/0.jpg" 
 alt="Auto installation of LAMP(Apache,MySQL,Php),PhpMyAdmin,Kubuntu Remote Desktop,Wordpress,SSL Certificate" width="480" height="360" border="10" /></a>
-
-[![Auto installation of LAMP(Apache,MySQL,Php),PhpMyAdmin,Kubuntu Remote Desktop,Wordpress,SSL Certificate](http://img.youtube.com/vi/LsI1Luq6X4Q/0.jpg)](http://www.youtube.com/watch?v=LsI1Luq6X4Q)
 
 ## Conclusion
 
