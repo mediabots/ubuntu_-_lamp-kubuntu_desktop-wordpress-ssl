@@ -72,10 +72,12 @@ All set :)
 
 ## Demo Video
 coming soon
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=LsI1Luq6X4Q" target="_blank"><img src="http://img.youtube.com/vi/LsI1Luq6X4Q/0.jpg" 
+alt="Auto installation of LAMP(Apache,MySQL,Php),PhpMyAdmin,Kubuntu Remote Desktop,Wordpress,SSL Certificate" width="240" height="180" border="10" /></a>
 
 ## Conclusion
 
-Script would take care of all common isssues of Wordpress installation, such as : Directory & User Permission , Redirection/Rewrite rules, .htaccess ,etc.
+Script would take care of all common issues of Wordpress installation, such as : Directory & User Permission , Redirection/Rewrite rules, .htaccess ,etc.
 
 Script would create an individual directory for each domain name such as : /var/www/html/YourDomainName
 
@@ -83,7 +85,7 @@ And it would also create an individual host file for each domain name such as : 
 
 That offers you to add the unlimited number of websites in your Server.
 
-SSL for your domain name woould be automatically renewed by the CertBOT. So you don't have to worry about that thing too.
+SSL for your domain name would be automatically renewed by the CertBOT. So you don't have to worry about that thing too.
 
 ## Reference
 
