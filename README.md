@@ -89,5 +89,4 @@ SSL for your domain name would be automatically renewed by the CertBOT. So you d
 
 ## Reference
 
-askubuntu.com, stackexchange.com, stackoverflow.com, ubuntuforums.com, Lynda.com, Digitalocean.com,
-eff.org, tecmint.com
+askubuntu.com, stackexchange.com, stackoverflow.com, ubuntuforums.com, Lynda.com,eff.org, tecmint.com
