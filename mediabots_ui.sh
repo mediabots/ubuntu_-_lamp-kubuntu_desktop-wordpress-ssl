@@ -148,7 +148,7 @@ CMD_EOF
 	# Generating SALT keys
 	for key in $(grep 'put your unique phrase here' ./wordpress/wp-config.php | cut -f2 -d"'"); do
 		RAND_KEY=$(tr </dev/urandom -dc _A-Z-a-z-0-9 | head -c32) || true
-		sudo sed -i "s/define(\s'${key}',\s\+'put your unique phrase here'\s);/define('${key}', '${RAND_KEY}');/" ./wordpress/wp-config.php
+		sudo sed -i "s/define(\s*'${key}',\s*'put your unique phrase here'\s*);/define('${key}', '${RAND_KEY}');/" ./wordpress/wp-config.php
 	done
 
 	# Installing & Configuring Wordpress
