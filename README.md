@@ -1,31 +1,31 @@
 # ubuntu_-_lamp-kubuntu_desktop-wordpress-ssl
 A Shell Script to Auto install LAMP(Apache,MySQL,Php),PhpMyAdmin,Kubuntu Desktop,Wine,Wordpress,SSL Certificate
 
-This is a Shell Script(Bash) with & without UI(user interface) to automatically install all above packages for Ubuntu 18.04/Bionic O.S.
+This is a Shell Script (Bash) with & without UI (user interface) to automatically install all above packages for Ubuntu 18.04/Bionic O.S.
 
-If you are using an older version of Ubuntu like 16.04 or 14.04. Then Remote Desktop(XRDP) facility would not work for you.
+If you are using an older version of Ubuntu like 16.04 or 14.04, then Remote Desktop(XRDP) facility would not work for you.
 
-With Kubuntu-desktop, script will also install WINE package to run Windows apps on your Linux system.
+With Kubuntu-desktop, the script will also install WINE package to run Windows apps on your Linux system.
 
-SSL is verified by letsencrypt.org and initially it would provide a 3 month Certificate. Certificate would be auto renewed after every 60 days by "CertBOT" app,which also would be installed in your system :)
+Letsencrypt.org verifies SSL and initially, it would provide a 3-month Certificate. The certificate would be auto-renewed after every 60 days by "Certbot" app, which will also be installed in your system :)
 
 ---
 
 ## Requirements
 A SSH client such as putty
 
-A VPS or Dedicated server with Ubuntu 18.04(preferred) OS Installed
+A VPS or Dedicated server with Ubuntu 18.04(preferred) OS Installed.
 
-Either should have access of root user OR run with su(super user) 
+Either should have access of root user OR run with su (super user) 
 
 ---
 
 ## Optional
 After Downloading "mediabots_ui.sh" file via wget, one can change Default PhpMyAdmin & MySQL password to his/her own choice.
 
-Default MySQL user 'root' password is : mysql_PASSWORD
+Default MySQL user 'root' password is: mysql_PASSWORD
 And
-Default 'phpmyadmin' password is : phpmyadmin_PASSWORD
+Default 'phpmyadmin' password is: phpmyadmin_PASSWORD
 
 COMMAND TO CHNAGE DEFAULT PASSWORDS:
 
@@ -39,7 +39,7 @@ ___
 
 ## How to Run the Script
 
-Just run below 4 commands one after another :
+Just run below four commands one after another :
 
 `su`
 
@@ -60,13 +60,13 @@ Since this script would pass your MySQL & PhpMyAdmin password through command li
 
 So it is a good practice to change those password after processing the script.
 
-Just go to http://SITE_IP_OR_URL/phpmyadmin and login with default/chosen passwords.
+Just go to http://SITE_IP_OR_URL/phpmyadmin and log in with default/chosen passwords.
 
 >MySQL user id is root
 
 >PhpMyAdmin user id is phpmyadmin
 
-After logged into phpmyadin, click on "user accounts". Then click on "Edit privileges" link from Action column corresponding to User name root & phpmyadmin (one by one). After that click on "Change password", put a secure password. Finally click on 'Go' button.
+After logged into PHPMyAdmin, click on "user accounts". Then click on "Edit privileges" link from Action column corresponding to User name root & phpmyadmin (one by one). After that click on "Change password", put a secure password. Finally, click on the 'Go' button.
 
 All set :)
 
@@ -77,15 +77,15 @@ alt="Auto installation of LAMP(Apache,MySQL,Php),PhpMyAdmin,Kubuntu Remote Deskt
 
 ## Conclusion
 
-Script would take care of all common issues of Wordpress installation, such as : Directory & User Permission , Redirection/Rewrite rules, .htaccess ,etc.
+The script would take care of all common issues of Wordpress installation, such as Directory & User Permission, Redirection/Rewrite rules, .htaccess, etc.
 
-Script would create an individual directory for each domain name such as : /var/www/html/YourDomainName
+The script would create an individual directory for each domain name such as/var/www/html/YourDomainName
 
-And it would also create an individual host file for each domain name such as : /etc/apache2/sites-available/YourDomainName.conf
+Moreover, it would also create an individual host file for each domain name such as/etc/apache2/sites-available/YourDomainName.conf
 
 That offers you to add the unlimited number of websites in your Server.
 
-SSL for your domain name would be automatically renewed by the CertBOT. So you don't have to worry about that thing too.
+The Certbot would automatically renew SSL for your domain name. So you don't have to worry about that thing too.
 
 ## Reference
 
