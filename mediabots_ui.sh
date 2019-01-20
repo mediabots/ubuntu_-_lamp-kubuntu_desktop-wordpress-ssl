@@ -6,12 +6,12 @@ wordpress_installation_=0
 read -r -p "[1] Do you want to install Wordpress? (Yes/No) : " wordpress_installation
 wordpress_installation=$(echo "$wordpress_installation" | head -c 1)
 
-if [ -z "$wordpress_installation" ] && [ "$wordpress_installation" = 'Y' -o "$wordpress_installation" = 'y' ]; then
+if [ ! -z $wordpress_installation ] && [ $wordpress_installation = 'Y' -o $wordpress_installation = 'y' ]; then
 	wordpress_installation_=1
 	echo ".:Advanced Setting:. It is Optional"
 	read -r -p "Do you want to setup Wordpress Database? (Yes/No) : " wpdb_choice
 	wpdb_choice=$(echo "$wpdb_choice" | head -c 1)
-	if [ "$wpdb_choice" = 'Y' -o "$wpdb_choice" = 'y' ]; then
+	if [ $wpdb_choice = 'Y' -o $wpdb_choice = 'y' ]; then
 		read -r -p " [1.1] Enter Wordpress 'Database Name', you want to create : " wpdb_name
 		read -r -p " [1.2] Enter Wordpress 'Database Username', you want to create : " wpdb_user
 		read -r -p " [1.3] Enter Wordpress 'Database Password', you want to create : " wpdb_password
@@ -19,19 +19,19 @@ if [ -z "$wordpress_installation" ] && [ "$wordpress_installation" = 'Y' -o "$wo
 fi
 
 read -r -p "[2] Enter Domain Name (leave Blank,if you don't have any) : " domain
-if [ -z "$domain" ] && [ $wordpress_installation_ -eq 1 ]; then
+if [ -z $domain ] && [ $wordpress_installation_ -eq 1 ]; then
 	domain='wordpress'
 	host=0
 fi
 
-if [ -z "$domain" ] && [ $wordpress_installation_ -eq 0 ]; then
+if [ -z $domain ] && [ $wordpress_installation_ -eq 0 ]; then
 	domain='mysite'
 	host=0
 fi
 
-if [ -z "$wpdb_name" ]; then wpdb_name='wordpress_DATABASE'; fi
-if [ -z "$wpdb_user" ]; then wpdb_user='wordpress_USER'; fi
-if [ -z "$wpdb_password" ]; then wpdb_password='wordpress_PASSWORD'; fi
+if [ -z $wpdb_name ]; then wpdb_name='wordpress_DATABASE'; fi
+if [ -z $wpdb_user ]; then wpdb_user='wordpress_USER'; fi
+if [ -z $wpdb_password ]; then wpdb_password='wordpress_PASSWORD'; fi
 
 echo "[3] Do you want to install Remote Desktop(XRDP)?"
 read -r -p " > It would take at least 1 hour to install. (Yes/No) : " xrdp_installtion
@@ -46,7 +46,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 sudo apt-get -y dist-upgrade
 sleep 5
 
-if [ "$xrdp_installtion" = 'Y' -o "$xrdp_installtion" = 'y' ]; then
+if [ $xrdp_installtion = 'Y' -o $xrdp_installtion = 'y' ]; then
 	# Installing Kubuntu Desktop & its Dependencies
 	sudo apt-get -y install xorg xrdp build-essential tasksel
 	sudo DEBIAN_FRONTEND=noninteractive tasksel install kubuntu-desktop
