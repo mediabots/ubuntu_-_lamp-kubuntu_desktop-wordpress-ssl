@@ -169,7 +169,7 @@ CMD_EOF
 fi
 
 # Hiding Server info
-#sudo sed -i "0,/<\/Directory>/{s/<\/Directory>/<\/Directory>\n<Directory \/var\/www\/html>\n\tOptions -Indexes\n<\/Directory>\n/}" /etc/apache2/apache2.conf
+sudo sed -i "0,/<\/Directory>/{s/<\/Directory>/<\/Directory>\n<Directory \/var\/www\/html>\n\tOptions -Indexes\n<\/Directory>\n/}" /etc/apache2/apache2.conf
 sudo echo -en "ServerSignature off\nServerTokens prod" >> /etc/apache2/apache2.conf
 sudo service apache2 restart
 #sudo apt-get install libapache2-mod-security2 -y
