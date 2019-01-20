@@ -140,17 +140,26 @@ CMD_EOF
 
 	# Pre Configuring Wordpress
 	sudo cp ./wordpress/wp-config-sample.php ./wordpress/wp-config.php
+	sudo sed -i '/put your unique phrase here/d' ./wordpress/wp-config.php # delete matching pattern
+	sudo sed -i '$d' ./wordpress/wp-config.php # delete last line
+	table_prefix=$(tr </dev/urandom -dc A-Za-z | head -c6)_ || WP_
+	sudo sed -i 's/wp_/'$table_prefix'/g' ./wordpress/wp-config.php
 	sudo sed -i 's/database_name_here/'$wpdb_name'/g' ./wordpress/wp-config.php
 	sudo sed -i 's/username_here/'$wpdb_user'/g' ./wordpress/wp-config.php
 	sudo sed -i 's/password_here/'$wpdb_password'/g' ./wordpress/wp-config.php
-	sudo sed -i "s/require_once(ABSPATH . 'wp-settings.php');/define('FS_METHOD', 'direct');\r\nrequire_once(ABSPATH . 'wp-settings.php');/g" ./wordpress/wp-config.php
-
-	# Generating SALT keys
-	for key in $(grep 'put your unique phrase here' ./wordpress/wp-config.php | cut -f2 -d"'"); do
-		RAND_KEY=$(tr </dev/urandom -dc _A-Z-a-z-0-9 | head -c32) || true
-		sudo sed -i "s/define(\s*'${key}',\s*'put your unique phrase here'\s*);/define('${key}', '${RAND_KEY}');/" ./wordpress/wp-config.php
+	# Setting up SALT
+	sudo curl -s https://api.wordpress.org/secret-key/1.1/salt/ > ./wordpress/keys.txt
+	keys=($(grep 'define' ./wordpress/keys.txt | cut -f2 -d"'"))
+	oldIFS=$IFS
+	IFS=$'\n'
+	idx=0
+	for value in $(grep 'define' ./wordpress/keys.txt | cut -f4 -d"'"); do 
+	sudo echo -en "define('${keys[$idx]}', '${value}');\r\n" >> ./wordpress/wp-config.php; 
+	idx=$((idx+1))
 	done
-
+	IFS=$oldIFS
+	sudo echo -en "define('FS_METHOD', 'direct');\r\nrequire_once(ABSPATH . 'wp-settings.php');" >> ./wordpress/wp-config.php; #Update WordPress Directly Without Using FTP
+	
 	# Installing & Configuring Wordpress
 	sudo rsync -avP ./wordpress/ /var/www/html/$domain/
 	sudo chown -R www-data:www-data /var/www/html/$domain/
@@ -167,7 +176,19 @@ CMD_EOF
 fi
 sleep 10
 
-# Cleaning Data
+# Hiding Server info
+#sudo sed -i "0,/<\/Directory>/{s/<\/Directory>/<\/Directory>\n<Directory \/var\/www\/html>\n\tOptions -Indexes\n<\/Directory>\n/}" /etc/apache2/apache2.conf
+sudo echo -en "ServerSignature off\nServerTokens prod" >> /etc/apache2/apache2.conf
+sudo service apache2 restart
+sudo apt-get install libapache2-mod-security2 -y
+#sudo mv /etc/modsecurity/modsecurity.conf-recommended /etc/modsecurity/modsecurity.conf
+#sudo service apache2 reload
+#sudo sed -i "s/SecRuleEngine DetectionOnly/SecRuleEngine On/" /etc/modsecurity/modsecurity.conf
+#sudo sed -i "s/SecResponseBodyAccess On/SecResponseBodyAccess Off/" /etc/modsecurity/modsecurity.conf
+sudo sed -i 's/<\/IfModule>/\tSecServerSignature " "\n<\/IfModule>/' /etc/apache2/mods-enabled/security2.conf # whether does it work ,test it after apache2 restart, by curl -I http://IP_Address
+#sudo service apache2 restart
+
+# Cleaning Data 
 if [ $wordpress_installation_ -eq 1 ]; then
 	rm -f /var/www/html/index.html
 	rm -rf wordpress
@@ -192,15 +213,15 @@ sleep 10
 if [ $host -eq 1 ]; then sudo echo -e "$(curl ifconfig.me)\t$domain" >>/etc/hosts; fi
 
 # Installing SSL
-if [ $host -eq 1 ]; then
-	sudo apt-get -y install software-properties-common
-	sudo add-apt-repository ppa:certbot/certbot -y
-	sudo apt-get update
-	sudo apt-get -y install python-certbot-apache
-	echo -e "admin@$domain\nA\n" | sudo DEBIAN_FRONTEND=noninteractive certbot --apache -d $domain
-	sudo sed -i 's/<\/VirtualHost>/RewriteEngine on\nRewriteCond %{SERVER_NAME} ='$domain'\nRewriteRule ^ https:\/\/%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]\n<\/VirtualHost>/g' /etc/apache2/sites-available/$domain.conf
-	sudo systemctl restart apache2
-fi
+#if [ $host -eq 1 ]; then
+#	sudo apt-get -y install software-properties-common
+#	sudo add-apt-repository ppa:certbot/certbot -y
+#	sudo apt-get update
+#	sudo apt-get -y install python-certbot-apache
+#	echo -e "admin@$domain\nA\n" | sudo DEBIAN_FRONTEND=noninteractive certbot --apache -d $domain
+#	sudo sed -i 's/<\/VirtualHost>/RewriteEngine on\nRewriteCond %{SERVER_NAME} ='$domain'\nRewriteRule ^ https:\/\/%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]\n<\/VirtualHost>/g' /etc/apache2/sites-available/$domain.conf
+#	sudo systemctl restart apache2
+#fi
 sleep 5
 
 #sudo reboot
