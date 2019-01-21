@@ -1,5 +1,19 @@
 #!/bin/bash
 
+# Checking previous installations
+apache_installed=0
+php_installed=0
+mysql_installed=0
+ufw_installed=0
+myadmin_installed=0
+xrdp_installed=0
+if [ $(apache2 -v | grep 'apache' -i | wc -l) -ge 1 ];then apache_installed=1; fi
+if [ $(php --version | grep 'php' -i | wc -l) -ge 1 ];then php_installed=1; fi
+if [ $(mysql --version | grep 'mysql' -i | wc -l) -ge 1 ];then mysql_installed=1; fi
+if [ $(ufw --version | grep 'ufw' -i | wc -l) -ge 1 ];then ufw_installed=1; fi
+if [ $(sudo apt-get install phpmyadmin | grep 'newest version' -i | wc -l) -ge 1 ];then myadmin_installed=1; fi
+if [ $(which xrdp | grep 'xrdp' -i | wc -l) -ge 1 ];then xrdp_installed=1; fi
+
 #Taking user inputs
 host=1
 wordpress_installation_=0
@@ -19,12 +33,12 @@ if [ ! -z $wordpress_installation ] && [ $wordpress_installation = 'Y' -o $wordp
 fi
 
 read -r -p "[2] Enter Domain Name (leave Blank,if you don't have any) : " domain
-if [ -z $domain ] && [ $wordpress_installation_ -eq 1 ]; then
+if [ -z $domain ] && [ $wordpress_installation_=1 ]; then
 	domain='wordpress'
 	host=0
 fi
 
-if [ -z $domain ] && [ $wordpress_installation_ -eq 0 ]; then
+if [ -z $domain ] && [ $wordpress_installation_=0 ]; then
 	domain='mysite'
 	host=0
 fi
@@ -33,9 +47,12 @@ if [ -z $wpdb_name ]; then wpdb_name='wordpress_DATABASE'; fi
 if [ -z $wpdb_user ]; then wpdb_user='wordpress_USER'; fi
 if [ -z $wpdb_password ]; then wpdb_password='wordpress_PASSWORD'; fi
 
-echo "[3] Do you want to install Remote Desktop(XRDP)?"
-read -r -p " > It would take at least 1 hour to install. (Yes/No) : " xrdp_installtion
-xrdp_installtion=$(echo "$xrdp_installtion" | head -c 1)
+xrdp_installtion='n'
+if [ $xrdp_installed=0 ]; then
+	echo "[3] Do you want to install Remote Desktop(XRDP)?"
+	read -r -p " > It would take at least 1 hour to install. (Yes/No) : " xrdp_installtion
+	xrdp_installtion=$(echo "$xrdp_installtion" | head -c 1)
+fi
 
 # Installing sudo
 printf "Y\n" | apt install sudo -y
@@ -95,11 +112,20 @@ sudo debconf-set-selections <<<'phpmyadmin phpmyadmin/reconfigure-webserver mult
 # PhpMyAdmin installation & configuration
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -q -y phpmyadmin
 
+if [ $mysql_installed=0 ];then
 sudo mysql -u root <<CMD_EOF
 UPDATE mysql.user SET authentication_string=PASSWORD('mysql_PASSWORD') WHERE user='root';
 UPDATE mysql.user SET plugin='mysql_native_password' WHERE user='root';
 FLUSH PRIVILEGES;
 CMD_EOF
+else
+echo "Please enter password for MYSQL user 'root'"
+sudo mysql -u root -p <<CMD_EOF
+UPDATE mysql.user SET authentication_string=PASSWORD('mysql_PASSWORD') WHERE user='root';
+UPDATE mysql.user SET plugin='mysql_native_password' WHERE user='root';
+FLUSH PRIVILEGES;
+CMD_EOF
+fi
 
 sudo echo -en "[mysql]\nuser=root\npassword=mysql_PASSWORD\n" >~/.my.cnf
 sudo chmod 0600 ~/.my.cnf
@@ -116,7 +142,7 @@ sudo systemctl reload apache2
 sudo a2enmod rewrite
 sudo systemctl restart apache2
 
-if [ $wordpress_installation_ -eq 1 ]; then
+if [ $wordpress_installation_=1 ]; then
 	# Creating Wordpress Database
 	sudo mysql -u root <<CMD_EOF
 CREATE DATABASE $wpdb_name;
@@ -168,25 +194,28 @@ CMD_EOF
 	mv /tmp/wp-cli.phar /usr/local/bin/wp
 fi
 
-# Hiding Server info
-sudo sed -i "0,/<\/Directory>/{s/<\/Directory>/<\/Directory>\n<Directory \/var\/www\/html>\n\tOptions -Indexes\n<\/Directory>\n/}" /etc/apache2/apache2.conf
-sudo echo -en "ServerSignature off\nServerTokens prod" >> /etc/apache2/apache2.conf
-sudo service apache2 restart
-#sudo apt-get install libapache2-mod-security2 -y
-#sudo mv /etc/modsecurity/modsecurity.conf-recommended /etc/modsecurity/modsecurity.conf
-#sudo service apache2 reload
-#sudo sed -i "s/SecRuleEngine DetectionOnly/SecRuleEngine On/" /etc/modsecurity/modsecurity.conf
-#sudo sed -i "s/SecResponseBodyAccess On/SecResponseBodyAccess Off/" /etc/modsecurity/modsecurity.conf
-#sudo sed -i 's/<\/IfModule>/\tSecServerSignature " "\n<\/IfModule>/' /etc/apache2/mods-enabled/security2.conf # whether does it work ,test it after apache2 restart, by curl -I http://IP_Address
-#sudo service apache2 restart
+if [ $apache_installed=0 ]; then
+	# Hiding Server info
+	sudo sed -i "0,/<\/Directory>/{s/<\/Directory>/<\/Directory>\n<Directory \/var\/www\/html>\n\tOptions -Indexes\n<\/Directory>\n/}" /etc/apache2/apache2.conf
+	sudo echo -en "ServerSignature off\nServerTokens prod" >> /etc/apache2/apache2.conf
+	sudo service apache2 restart
+	#sudo apt-get install libapache2-mod-security2 -y # these 7 line of commands would works, iff .htaccess file content written manually
+	#sudo mv /etc/modsecurity/modsecurity.conf-recommended /etc/modsecurity/modsecurity.conf
+	#sudo service apache2 reload
+	#sudo sed -i "s/SecRuleEngine DetectionOnly/SecRuleEngine On/" /etc/modsecurity/modsecurity.conf
+	#sudo sed -i "s/SecResponseBodyAccess On/SecResponseBodyAccess Off/" /etc/modsecurity/modsecurity.conf
+	#sudo sed -i 's/<\/IfModule>/\tSecServerSignature " "\n<\/IfModule>/' /etc/apache2/mods-enabled/security2.conf # whether does it work ,test it after apache2 restart, by curl -I http://IP_Address
+	#sudo service apache2 restart
+fi
 
 # Cleaning Data 
-if [ $wordpress_installation_ -eq 1 ]; then
+if [ $wordpress_installation_=1 ]; then
 	rm -f /var/www/html/index.html
 	rm -rf wordpress
 fi
 rm -f ~/.my.cnf
 
+if [ $apache_installed=0 ]; then
 # Renabling SSH
 sudo /etc/init.d/ssh restart
 sudo sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
@@ -198,12 +227,13 @@ sudo dpkg-reconfigure openssh-server
 	chmod 755 ./10ssh
 )
 sudo systemctl enable ssh.service
+fi
 
 # Adding Domain name in Host file
-if [ $host -eq 1 ]; then sudo echo -e "$(curl ifconfig.me)\t$domain" >>/etc/hosts; fi
+if [ $host=1 ]; then sudo echo -e "$(curl ifconfig.me)\t$domain" >>/etc/hosts; fi
 
 # Installing SSL
-if [ $host -eq 1 ]; then
+if [ $host=1 ]; then
 	sudo apt-get -y install software-properties-common
 	sudo add-apt-repository ppa:certbot/certbot -y
 	sudo apt-get update
@@ -212,6 +242,9 @@ if [ $host -eq 1 ]; then
 	sudo sed -i 's/<\/VirtualHost>/RewriteEngine on\nRewriteCond %{SERVER_NAME} ='$domain'\nRewriteRule ^ https:\/\/%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]\n<\/VirtualHost>/g' /etc/apache2/sites-available/$domain.conf
 	sudo systemctl restart apache2
 fi
+
+# Print & Write important informations
+echo -e "###########  * DETIALS *  ###########\n\nSite Directory : /var/www/html/$domain\nHost file Directory for $domain : /etc/apache2/sites-available/$domain.conf\n-------------------------------------\nPhpMyAdmin URL : $domain/phpmyadmin\nMySQL Information -\n\t user : root\n\t password : $(grep "UPDATE mysql.user SET authentication_string=PASSWORD('" mediabots_ui.sh | cut -f2 -d"'")\n-------------------------------------\n[[ WORDPRESS ]]\n If you have installed Wordpress;\n\t its configuration page could be found here : /var/www/html/$domain/wp-config.php\n\t Wordpress database name : $wpdb_name\n\t" | tee details.txt
 
 #sudo reboot
 # now open SITE_URL_or_IP/wp-admin/install.php
