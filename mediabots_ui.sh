@@ -181,7 +181,7 @@ CMD_EOF
 	
 	# Installing & Configuring Wordpress
 	sudo rsync -avP ./wordpress/ /var/www/html/$domain/
-	sudo chown -R www-data:www-data /var/www/html/$domain/
+	sudo chown -R www-data:www-data /var/www/html/
 	mkdir /var/www/html/$domain/wp-content/uploads
 	sudo chown -R www-data:www-data /var/www/html/$domain/wp-content/uploads
 	sudo service apache2 restart
@@ -244,7 +244,7 @@ if [ $host -eq 1 ]; then
 fi
 
 # Print & Write important informations
-echo -e "###########  * DETIALS *  ###########\n\nSite Directory : /var/www/html/$domain\nHost file Directory for $domain : /etc/apache2/sites-available/$domain.conf\n-------------------------------------\nPhpMyAdmin URL : $domain/phpmyadmin\nMySQL Information -\n\t user : root\n\t password : $(grep "UPDATE mysql.user SET authentication_string=PASSWORD('" mediabots_ui.sh | cut -f2 -d"'")\n-------------------------------------\n[[ WORDPRESS ]]\n If you have installed Wordpress;\n\t its configuration page could be found here : /var/www/html/$domain/wp-config.php\n\t Wordpress database name : $wpdb_name\n\t" | tee details.txt
+echo -e "###########  * DETIALS *  ###########\n\nSite Directory : /var/www/html/$domain\nHost file Directory for $domain : /etc/apache2/sites-available/$domain.conf\n-------------------------------------\nPhpMyAdmin URL : $domain/phpmyadmin\nMySQL Information -\n\t user : root\n\t password : $(grep "UPDATE mysql.user SET authentication_string=PASSWORD('" mediabots_ui.sh | head -1 | cut -f2 -d"'")\n-------------------------------------\n[[ WORDPRESS ]]\n If you have installed Wordpress;\n\t its configuration page could be found here : /var/www/html/$domain/wp-config.php\n\t Wordpress database name : $wpdb_name\n\t" | tee details.txt
 
 #sudo reboot
 # now open SITE_URL_or_IP/wp-admin/install.php
