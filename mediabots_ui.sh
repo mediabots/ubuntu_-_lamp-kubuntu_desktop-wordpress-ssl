@@ -33,12 +33,12 @@ if [ ! -z $wordpress_installation ] && [ $wordpress_installation = 'Y' -o $wordp
 fi
 
 read -r -p "[2] Enter Domain Name (leave Blank,if you don't have any) : " domain
-if [ -z $domain ] && [ $wordpress_installation_=1 ]; then
+if [ -z $domain ] && [ $wordpress_installation_ -eq 1 ]; then
 	domain='wordpress'
 	host=0
 fi
 
-if [ -z $domain ] && [ $wordpress_installation_=0 ]; then
+if [ -z $domain ] && [ $wordpress_installation_ -eq 0 ]; then
 	domain='mysite'
 	host=0
 fi
@@ -48,7 +48,7 @@ if [ -z $wpdb_user ]; then wpdb_user='wordpress_USER'; fi
 if [ -z $wpdb_password ]; then wpdb_password='wordpress_PASSWORD'; fi
 
 xrdp_installtion='n'
-if [ $xrdp_installed=0 ]; then
+if [ $xrdp_installed = 0 ]; then
 	echo "[3] Do you want to install Remote Desktop(XRDP)?"
 	read -r -p " > It would take at least 1 hour to install. (Yes/No) : " xrdp_installtion
 	xrdp_installtion=$(echo "$xrdp_installtion" | head -c 1)
@@ -112,7 +112,7 @@ sudo debconf-set-selections <<<'phpmyadmin phpmyadmin/reconfigure-webserver mult
 # PhpMyAdmin installation & configuration
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -q -y phpmyadmin
 
-if [ $mysql_installed=0 ];then
+if [ $mysql_installed = 0 ];then
 sudo mysql -u root <<CMD_EOF
 UPDATE mysql.user SET authentication_string=PASSWORD('mysql_PASSWORD') WHERE user='root';
 UPDATE mysql.user SET plugin='mysql_native_password' WHERE user='root';
@@ -142,7 +142,7 @@ sudo systemctl reload apache2
 sudo a2enmod rewrite
 sudo systemctl restart apache2
 
-if [ $wordpress_installation_=1 ]; then
+if [ $wordpress_installation_ = 1 ]; then
 	# Creating Wordpress Database
 	sudo mysql -u root <<CMD_EOF
 CREATE DATABASE $wpdb_name;
@@ -194,7 +194,7 @@ CMD_EOF
 	mv /tmp/wp-cli.phar /usr/local/bin/wp
 fi
 
-if [ $apache_installed=0 ]; then
+if [ $apache_installed = 0 ]; then
 	# Hiding Server info
 	sudo sed -i "0,/<\/Directory>/{s/<\/Directory>/<\/Directory>\n<Directory \/var\/www\/html>\n\tOptions -Indexes\n<\/Directory>\n/}" /etc/apache2/apache2.conf
 	sudo echo -en "ServerSignature off\nServerTokens prod" >> /etc/apache2/apache2.conf
@@ -209,13 +209,13 @@ if [ $apache_installed=0 ]; then
 fi
 
 # Cleaning Data 
-if [ $wordpress_installation_=1 ]; then
+if [ $wordpress_installation_ -eq 1 ]; then
 	rm -f /var/www/html/index.html
 	rm -rf wordpress
 fi
 rm -f ~/.my.cnf
 
-if [ $apache_installed=0 ]; then
+if [ $apache_installed = 0 ]; then
 # Renabling SSH
 sudo /etc/init.d/ssh restart
 sudo sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
@@ -230,10 +230,10 @@ sudo systemctl enable ssh.service
 fi
 
 # Adding Domain name in Host file
-if [ $host=1 ]; then sudo echo -e "$(curl ifconfig.me)\t$domain" >>/etc/hosts; fi
+if [ $host -eq 1 ]; then sudo echo -e "$(curl ifconfig.me)\t$domain" >>/etc/hosts; fi
 
 # Installing SSL
-if [ $host=1 ]; then
+if [ $host -eq 1 ]; then
 	sudo apt-get -y install software-properties-common
 	sudo add-apt-repository ppa:certbot/certbot -y
 	sudo apt-get update
