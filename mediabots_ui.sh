@@ -7,11 +7,11 @@ mysql_installed=0
 ufw_installed=0
 myadmin_installed=0
 xrdp_installed=0
-if [ $(apache2 -v | grep 'apache' -i | wc -l) -ge 1 ];then apache_installed=1; fi
-if [ $(php --version | grep 'php' -i | wc -l) -ge 1 ];then php_installed=1; fi
-if [ $(mysql --version | grep 'mysql' -i | wc -l) -ge 1 ];then mysql_installed=1; fi
-if [ $(ufw --version | grep 'ufw' -i | wc -l) -ge 1 ];then ufw_installed=1; fi
-if [ $(sudo apt-get install phpmyadmin | grep 'newest version' -i | wc -l) -ge 1 ];then myadmin_installed=1; fi
+if [ $(which apache2 | grep 'apache' -i | wc -l) -ge 1 ];then apache_installed=1; fi
+if [ $(which php | grep 'php' -i | wc -l) -ge 1 ];then php_installed=1; fi
+if [ $(which mysql | grep 'mysql' -i | wc -l) -ge 1 ];then mysql_installed=1; fi
+if [ $(which ufw | grep 'ufw' -i | wc -l) -ge 1 ];then ufw_installed=1; fi
+if [ $(which phpmyadmin | grep 'phpmyadmin' -i | wc -l) -ge 1 ];then myadmin_installed=1; fi
 if [ $(which xrdp | grep 'xrdp' -i | wc -l) -ge 1 ];then xrdp_installed=1; fi
 
 #Taking user inputs
