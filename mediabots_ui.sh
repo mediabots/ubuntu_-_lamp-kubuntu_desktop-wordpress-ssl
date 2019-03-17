@@ -89,7 +89,7 @@ if [ $xrdp_installtion = 'Y' -o $xrdp_installtion = 'y' ]; then
 fi
 
 # Installing LAMP (Apache Server, MySQL, Php) & Firewall
-sudo apt-get -y install apache2 ufw # Apache and Firewall
+sudo apt-get -y install apache2 ufw zip # Apache , Firewall & zip
 printf "y\n" | sudo ufw enable
 sudo ufw allow 3389 # Allowing remote desktop (xrdp) to Firewall
 sudo ufw allow ssh
@@ -240,6 +240,7 @@ if [ $host -eq 1 ]; then
 	sudo apt-get -y install python-certbot-apache
 	echo -e "admin@$domain\nA\n" | sudo DEBIAN_FRONTEND=noninteractive certbot --apache -d $domain
 	sudo sed -i 's/<\/VirtualHost>/RewriteEngine on\nRewriteCond %{SERVER_NAME} ='$domain'\nRewriteRule ^ https:\/\/%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]\n<\/VirtualHost>/g' /etc/apache2/sites-available/$domain.conf
+	sudo sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 200M/" /etc/php/7.0/apache2/php.ini
 	sudo systemctl restart apache2
 fi
 
