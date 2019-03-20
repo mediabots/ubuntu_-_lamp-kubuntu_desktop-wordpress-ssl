@@ -59,7 +59,7 @@ printf "Y\n" | apt install sudo -y
 
 # Updating System
 sudo apt-get update
-sudo DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+printf "Y\n" | sudo DEBIAN_FRONTEND=noninteractive apt-get --yes upgrade
 sudo apt-get -y dist-upgrade
 
 if [ $xrdp_installtion = 'Y' -o $xrdp_installtion = 'y' ]; then
