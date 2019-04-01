@@ -241,6 +241,7 @@ if [ $host -eq 1 ]; then
 	echo -e "admin@$domain\nA\n" | sudo DEBIAN_FRONTEND=noninteractive certbot --apache -d $domain
 	sudo sed -i 's/<\/VirtualHost>/RewriteEngine on\nRewriteCond %{SERVER_NAME} ='$domain'\nRewriteRule ^ https:\/\/%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]\n<\/VirtualHost>/g' /etc/apache2/sites-available/$domain.conf
 	sudo sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 200M/" /etc/php/7.0/apache2/php.ini
+	sudo sed -i "s/post_max_size = 8M/post_max_size = 200M/" /etc/php/7.0/apache2/php.ini
 	sudo systemctl restart apache2
 fi
 
