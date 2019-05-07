@@ -89,8 +89,8 @@ if [ $xrdp_installtion = 'Y' -o $xrdp_installtion = 'y' ]; then
 fi
 
 # Installing LAMP (Apache Server, MySQL, Php) & Firewall
-sudo apt-get -y install apache2 ufw zip sendmail # Apache , Firewall & zip and sendmail
-yes 'y' | sudo sendmailconfig # configure sendmail
+sudo apt-get -y install apache2 ufw zip #sendmail # Apache , Firewall & zip and sendmail
+#yes 'y' | sudo sendmailconfig # configure sendmail
 printf "y\n" | sudo ufw enable
 sudo ufw allow 3389 # Allowing remote desktop (xrdp) to Firewall
 sudo ufw allow ssh
@@ -98,7 +98,13 @@ sudo ufw allow in "Apache Full"
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-server
 sudo mysql -e "DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1')"
 sudo mysql -e "FLUSH PRIVILEGES"
-sudo DEBIAN_FRONTEND=noninteractive apt-get -y install php libapache2-mod-php php-mysql
+#sudo DEBIAN_FRONTEND=noninteractive apt-get -y install php libapache2-mod-php php-mysql
+sudo apt-get -y install python-software-properties
+printf "\n" | sudo add-apt-repository ppa:ondrej/php
+sudo apt-get update
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install php7.0
+sudo apt-get -y install php7.0-cli php7.0-mysql php7.0-json php7.0-cgi libapache2-mod-php7.0
+
 sudo service apache2 restart
 sudo chown -R "$USER":root /var/www
 
@@ -156,7 +162,8 @@ CMD_EOF
 	tar xzvf latest.tar.gz
 
 	# Installing Wordpress dependencies
-	sudo apt-get -y install php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip
+	#sudo apt-get -y install php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip
+	sudo apt-get -y install php7.0-curl php7.0-gd php7.0-mbstring php7.0-xml php7.0-xmlrpc php7.0-soap php7.0-intl php7.0-zip
 
 	# Pre Configuring Wordpress
 	sudo cp ./wordpress/wp-config-sample.php ./wordpress/wp-config.php
