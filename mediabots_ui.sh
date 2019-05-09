@@ -118,6 +118,10 @@ sudo debconf-set-selections <<<'phpmyadmin phpmyadmin/reconfigure-webserver mult
 
 # PhpMyAdmin installation & configuration
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -q -y phpmyadmin
+#Changing phpmyadmin access url
+phpmyadmin_url=$(tr </dev/urandom -dc A-Za-z0-9_- | head -c32)
+sudo sed -i 's/Alias \/phpmyadmin \/usr\/share\/phpmyadmin/#Alias \/phpmyadmin \/usr\/share\/phpmyadmin\nAlias \/'$phpmyadmin_url' \/usr\/share\/phpmyadmin/' /etc/apache2/conf-available/phpmyadmin.conf
+sudo service apache2 reload
 
 if [ $mysql_installed = 0 ];then
 sudo mysql -u root <<CMD_EOF
@@ -130,7 +134,7 @@ echo "Please enter password for MYSQL user 'root'"
 sudo mysql -u root -p <<CMD_EOF
 UPDATE mysql.user SET authentication_string=PASSWORD('mysql_PASSWORD') WHERE user='root';
 UPDATE mysql.user SET plugin='mysql_native_password' WHERE user='root';
-FLUSH PRIVILEGES;
+mFLUSH PRIVILEGES;
 CMD_EOF
 fi
 
@@ -254,7 +258,7 @@ if [ $host -eq 1 ]; then
 fi
 
 # Print & Write important informations
-echo -e "###########  * DETIALS *  ###########\n\nSite Directory : /var/www/html/$domain\nHost file for $domain : /etc/apache2/sites-available/$domain.conf\n-------------------------------------\nPhpMyAdmin URL : $domain/phpmyadmin\nMySQL Information -\n\t user : root\n\t password : $(grep "UPDATE mysql.user SET authentication_string=PASSWORD('" mediabots_ui.sh | head -1 | cut -f2 -d"'")\n-------------------------------------\n[[ WORDPRESS ]]\n If you have installed Wordpress;\n\t its configuration page could be found here : /var/www/html/$domain/wp-config.php\n\t Wordpress database name : $wpdb_name\n\n[SSL/HTTPS] if ssl successfully configured for your domain name, then certificate and chain would have been saved at Directory : /etc/letsencrypt/live/$domain\n\tCreate a backup for Directory : /etc/letsencrypt/" | tee -a details.txt
+echo -e "###########  * DETIALS *  ###########\n\nSite Directory : /var/www/html/$domain\nHost file for $domain : /etc/apache2/sites-available/$domain.conf\n-------------------------------------\nPhpMyAdmin URL : $domain/$phpmyadmin_url\nMySQL Information -\n\t user : root\n\t password : $(grep "UPDATE mysql.user SET authentication_string=PASSWORD('" mediabots_ui.sh | head -1 | cut -f2 -d"'")\n-------------------------------------\n[[ WORDPRESS ]]\n If you have installed Wordpress;\n\t its configuration page could be found here : /var/www/html/$domain/wp-config.php\n\t Wordpress database name : $wpdb_name\n\n[SSL/HTTPS] if ssl successfully configured for your domain name, then certificate and chain would have been saved at Directory : /etc/letsencrypt/live/$domain\n\tCreate a backup for Directory : /etc/letsencrypt/" | tee -a details.txt
 
 #sudo reboot
 # now open SITE_URL_or_IP/wp-admin/install.php
