@@ -134,7 +134,7 @@ echo "Please enter password for MYSQL user 'root'"
 sudo mysql -u root -p <<CMD_EOF
 UPDATE mysql.user SET authentication_string=PASSWORD('mysql_PASSWORD') WHERE user='root';
 UPDATE mysql.user SET plugin='mysql_native_password' WHERE user='root';
-mFLUSH PRIVILEGES;
+FLUSH PRIVILEGES;
 CMD_EOF
 fi
 
