@@ -89,10 +89,11 @@ if [ $xrdp_installtion = 'Y' -o $xrdp_installtion = 'y' ]; then
 fi
 
 # Installing LAMP (Apache Server, MySQL, Php) & Firewall
-sudo apt-get -y install apache2 ufw zip #sendmail # Apache , Firewall & zip and sendmail
-#yes 'y' | sudo sendmailconfig # configure sendmail
+sudo apt-get -y install apache2 ufw zip sendmail # Apache , Firewall & zip and sendmail
+yes 'y' | sudo sendmailconfig # configure sendmail
 printf "y\n" | sudo ufw enable
 sudo ufw allow 3389 # Allowing remote desktop (xrdp) to Firewall
+sudo ufw allow openSSH
 sudo ufw allow ssh
 sudo ufw allow in "Apache Full"
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-server
