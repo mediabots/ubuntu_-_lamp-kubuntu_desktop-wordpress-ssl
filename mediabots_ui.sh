@@ -93,7 +93,7 @@ sudo apt-get -y install apache2 ufw zip sendmail # Apache , Firewall & zip and s
 yes 'y' | sudo sendmailconfig # configure sendmail
 printf "y\n" | sudo ufw enable
 sudo ufw allow 3389 # Allowing remote desktop (xrdp) to Firewall
-sudo ufw allow openSSH
+sudo ufw allow OpenSSH
 sudo ufw allow ssh
 sudo ufw allow in "Apache Full"
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-server
